@@ -12,7 +12,7 @@ Consumes the stackOverflow JSON API and displays a Bar Chart showing the the lan
 
 View API Response: https://api.stackexchange.com/2.2/tags?pagesize=30&order=desc&sort=popular&site=stackoverflow.
 
-View API Documentation:
+View API Documentation: https://api.stackexchange.com/docs/tags#pagesize=30&order=desc&sort=popular&filter=default&site=stackoverflow&run=true
 
 The filters present next to the chart can be set accordingly to filter down the data displayed.
 

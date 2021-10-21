@@ -30,7 +30,7 @@ const BarChart = () => {
                             legend: { display: false },
                             title: {
                                 display: true,
-                                text: "Languages Popularity",
+                                text: "Languages by Popularity",
                             },
                         },
                     }}

@@ -72,7 +72,7 @@ const About = () => {
                         <a
                             style={{ marginTop: "10px" }}
                             className="btn btn-light btn-block all-center"
-                            href="https://api.stackexchange.com/2.2/tags?pagesize=30&order=desc&sort=popular&site=stackoverflow"
+                            href="https://api.stackexchange.com/docs/tags#pagesize=30&order=desc&sort=popular&filter=default&site=stackoverflow&run=true"
                         >
                             <strong>View API Documentation</strong>
                         </a>
