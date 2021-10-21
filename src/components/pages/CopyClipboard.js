@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const CopyClipboard = () => {
+    const copyRef = useRef(null);
     const [inputText, setInputText] = useState("");
     const [copyText, setCopyText] = useState("");
     const onChange = (e) => {
         setInputText(e.target.value);
         let copyString = e.target.value.match(/q=([^&]+)/);
-        if (copyString) {
-            //copyString = copyString.slice(2);
-        }
         if (copyString) {
             setCopyText(copyString[1]);
         } else {
@@ -17,15 +15,13 @@ const CopyClipboard = () => {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        let copyTextInput = document.getElementById("copyText");
-        console.log(copyTextInput.value);
-        copyTextInput.select();
-        //let = document.getSelection();
-        navigator.clipboard.writeText(copyTextInput.value);
+        copyRef.current.select();
+        navigator.clipboard.writeText(copyRef.current.value);
     };
     return (
         <div>
-            <div className="card all-center">
+            <div style={{ height: "70vh" }} className="card all-center">
+                <h3>Enter Your URL</h3>
                 <form onSubmit={onSubmit} className="form">
                     <div
                         style={{
@@ -37,10 +33,12 @@ const CopyClipboard = () => {
                         <input
                             type="text"
                             name="inputText"
+                            placeholder="Enter URL"
                             value={inputText}
                             onChange={onChange}
                         />
                         <input
+                            ref={copyRef}
                             id="copyText"
                             readOnly
                             type="text"
@@ -51,7 +49,7 @@ const CopyClipboard = () => {
                         <input
                             type="submit"
                             value="Copy"
-                            className="btn btn-dark"
+                            className="btn btn-primary"
                         />
                     </div>
                 </form>

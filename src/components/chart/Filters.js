@@ -139,7 +139,7 @@ const Filters = () => {
                 <input
                     type="submit"
                     value="search"
-                    className="btn btn-dark btn-block"
+                    className="btn btn-primary btn-block"
                 />
             </form>
             <button className="btn btn-light btn-block" onClick={onReset}>

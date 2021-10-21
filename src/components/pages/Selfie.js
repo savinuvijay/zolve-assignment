@@ -6,6 +6,7 @@ import "react-image-crop/dist/ReactCrop.css";
 const Selfie = () => {
     const camRef = useRef(null);
     const prewiewCanvasRef = useRef(null);
+    const [isCropped, setIsCropped] = useState(false);
     const [img, setImg] = useState(null);
     const [crop, setCrop] = useState({
         aspect: 1 / 1,
@@ -22,6 +23,10 @@ const Selfie = () => {
     };
     const onCropComplete = (crop, pixelCrop) => {
         //setCompletedCrop(crop);
+        //setIsCropped(true);
+        if (crop.width > 0 && crop.height > 0) {
+            setIsCropped(true);
+        }
         console.log(crop, pixelCrop, prewiewCanvasRef.current);
         image64toCanvasRef(prewiewCanvasRef.current, img, crop);
     };
@@ -34,13 +39,17 @@ const Selfie = () => {
                             ref={camRef}
                             style={{ width: "40vw", marginBottom: "10px" }}
                         />
-                        <button className="btn btn-dark" onClick={onCapture}>
+                        <button
+                            className="btn btn-primary btn-block"
+                            onClick={onCapture}
+                        >
                             Capture
                         </button>
                     </div>
                 )}
                 {!!img && (
                     <div>
+                        <h3>Click and Drag on the image to Crop</h3>
                         {/* <img src={img} alt="capture" /> */}
                         <ReactCrop
                             src={img}
@@ -49,24 +58,43 @@ const Selfie = () => {
                             onComplete={onCropComplete}
                             style={{ width: "40vw", marginBottom: "10px" }}
                         />
-                        <button className="btn btn-dark" onClick={onRetake}>
-                            Retake
-                        </button>
-                        <button
-                            className="btn btn-dark-primary"
+                        {/* <button
+                            className="btn btn-dark btn-block"
                             onClick={onRetake}
                         >
-                            Crop
+                            Retake
+                        </button> */}
+                        <button
+                            className="btn btn-primary btn-block"
+                            onClick={onRetake}
+                        >
+                            Retake
                         </button>
                     </div>
                 )}
             </div>
             <div className="card all-center">
-                {!!img && (
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "space-between",
+                        width: "100%",
+                    }}
+                >
                     <div>
-                        <canvas ref={prewiewCanvasRef} />
+                        {!!img && (
+                            <div>
+                                <canvas ref={prewiewCanvasRef} />
+                            </div>
+                        )}
                     </div>
-                )}
+                    {isCropped && (
+                        <button className="btn btn-primary btn-block">
+                            Upload
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );

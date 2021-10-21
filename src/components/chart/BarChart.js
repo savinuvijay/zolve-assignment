@@ -24,8 +24,6 @@ const BarChart = () => {
                             },
                         ],
                     }}
-                    height={400}
-                    width={400}
                     options={{
                         maintainAspectRatio: false,
                         plugins: {
